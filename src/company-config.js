@@ -22,7 +22,7 @@ module.exports = {
   contact: {
     email: 'desk@amruniversal.example', // replace with real mailbox once domain exists
     phone: '+44 (0)20 0000 0000',       // placeholder — replace
-    whatsapp: '440000000000',           // placeholder — replace, digits only
+    whatsapp: '447751700211',           // desk WhatsApp, digits only
     addressLines: [
       'Registered office to be confirmed',
       'London, United Kingdom',
