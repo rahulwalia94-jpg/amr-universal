@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= page.title %></title>
+  <meta name="description" content="<%= page.description %>">
+  <link rel="canonical" href="<%= BASE_URL %><%= page.path %>">
+  <meta property="og:site_name" content="<%= company.displayName %>">
+  <meta property="og:title" content="<%= page.title %>">
+  <meta property="og:description" content="<%= page.description %>">
+  <meta property="og:url" content="<%= BASE_URL %><%= page.path %>">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#12291f">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "<%= company.name %>",
+    "url": "<%= BASE_URL %>/",
+    "logo": "<%= BASE_URL %>/img/monogram.svg",
+    "founder": { "@type": "Person", "name": "<%= company.founder %>" },
+    "description": "International trading of paper, board and secondary metals across the UK, Europe and North America.",
+    "areaServed": ["GB", "EU", "US", "CA"],
+    "knowsAbout": ["paper stocklots", "testliner", "kraftliner", "paper board trading", "scrap steel", "aluminium scrap", "cast iron"]
+  }
+  </script>
+</head>
+<body data-whatsapp="<%= company.contact.whatsapp %>">
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="wordmark" href="/" aria-label="AMR Universal — home">
+      <svg class="monogram" viewBox="0 0 64 64" aria-hidden="true"><use href="/img/monogram.svg#amr"></use></svg>
+      <span class="wordmark-text">
+        <span class="wordmark-name">AMR&nbsp;Universal</span>
+        <span class="wordmark-sub"><%= company.geographies %></span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+      <ul id="nav-list">
+        <li><a href="/" <%= page.path === '/' ? 'aria-current="page"' : '' %>>Home</a></li>
+        <li><a href="/the-house" <%= page.path === '/the-house' ? 'aria-current="page"' : '' %>>The House</a></li>
+        <li><a href="/paper-and-board" <%= page.path === '/paper-and-board' ? 'aria-current="page"' : '' %>>Paper &amp; Board</a></li>
+        <li><a href="/metals" <%= page.path === '/metals' ? 'aria-current="page"' : '' %>>Metals</a></li>
+        <li><a href="/live-desk" <%= page.path === '/live-desk' ? 'aria-current="page"' : '' %>>Live Desk</a></li>
+        <li><a href="/ledger" <%= page.path.startsWith('/ledger') ? 'aria-current="page"' : '' %>>The Ledger</a></li>
+        <li><a href="/terms-of-trade" <%= page.path === '/terms-of-trade' ? 'aria-current="page"' : '' %>>Terms of Trade</a></li>
+        <li><a href="/contact" <%= page.path === '/contact' ? 'aria-current="page"' : '' %>>Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">

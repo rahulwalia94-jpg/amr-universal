@@ -1,0 +1,34 @@
+<%- include('partials/head') %>
+
+<section class="page-head">
+  <div class="section-inner">
+    <p class="smallcaps section-no">Privacy &amp; Cookies</p>
+    <h1>We collect little, and we track nothing.</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner narrow terms-body">
+    <h2><span class="smallcaps section-no">I.</span> Who We Are</h2>
+    <p><%= company.name %> ("we") is the controller of personal data collected through this website. Contact: <a class="quiet-link" href="mailto:<%= company.contact.email %>"><%= company.contact.email %></a>.</p>
+
+    <h2><span class="smallcaps section-no">II.</span> Cookies — None That Track</h2>
+    <p>This site sets <strong>no tracking cookies and no analytics cookies</strong>, and loads no third-party scripts, fonts or beacons. That is why you saw no consent banner: under PECR none is needed, because nothing consent-worthy happens. We are quietly proud of this.</p>
+
+    <h2><span class="smallcaps section-no">III.</span> What We Collect, and Why</h2>
+    <p>We process the personal data you choose to give us, on the lawful basis of legitimate interests (responding to trade enquiries) or consent (the lot-sheet subscription):</p>
+    <ul>
+      <li><strong>Enquiries and details requests</strong> — name, company, contact details and your message, used solely to respond to you. Enquiries are relayed to the desk's WhatsApp for speed of response; WhatsApp is operated by Meta Platforms, which processes message data under its own terms.</li>
+      <li><strong>The Wire</strong> — your email address, used solely to send the lot sheet. Unsubscribe at any time by writing to us; the address is then removed.</li>
+      <li><strong>Server logs</strong> — IP address and request data, kept briefly by our hosting provider (Render) for security and operation of the service.</li>
+    </ul>
+
+    <h2><span class="smallcaps section-no">IV.</span> Retention &amp; Sharing</h2>
+    <p>Enquiry records are retained while a trading relationship is live or in prospect, then deleted. We do not sell or share personal data with third parties beyond the processors named above (Render for hosting; Meta for WhatsApp relay), and we transfer data outside the UK only under recognised safeguards.</p>
+
+    <h2><span class="smallcaps section-no">V.</span> Your Rights</h2>
+    <p>Under UK GDPR you may request access, rectification, erasure, restriction or portability of your data, and you may object to processing. Write to <a class="quiet-link" href="mailto:<%= company.contact.email %>"><%= company.contact.email %></a>. You may complain to the Information Commissioner's Office (ico.org.uk).</p>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

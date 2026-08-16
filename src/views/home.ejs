@@ -1,0 +1,90 @@
+<%- include('partials/head') %>
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="smallcaps hero-kicker">Est. London · Paper &amp; Board · Ferrous &amp; Non-Ferrous</p>
+    <h1 class="hero-title">We buy and sell paper.<br>We have done so across three continents,<br>in every grade, at every scale.</h1>
+    <p class="hero-sub">AMR Universal is a trading house. Mills, printers, converters, foundries and yards deal with us because we move physical material quietly, promptly and on our word.</p>
+    <div class="hero-cta">
+      <a class="btn" href="/live-desk">View the live desk</a>
+      <a class="btn-plain" href="/contact">Speak to the desk</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <p class="section-no smallcaps">I. — The Desks</p>
+    <div class="pillars">
+      <div class="pillar">
+        <h2 class="pillar-title">Paper &amp; Board</h2>
+        <p>Prime reels and sheets, stocklots, side-runs, redundant and surplus stock, printed and unprinted waste. Kraft, testliner, fluting, coated and uncoated woodfree, boards. We sell, and we buy.</p>
+        <a class="quiet-link" href="/paper-and-board">The paper desk</a>
+      </div>
+      <div class="pillar">
+        <h2 class="pillar-title">Metals</h2>
+        <p>Scrap and secondary metals, traded with the same discipline. Steel — HMS, shredded, plate and structural. Aluminium — extrusions, castings, UBC, wheels. Cast iron.</p>
+        <a class="quiet-link" href="/metals">The metals desk</a>
+      </div>
+      <div class="pillar">
+        <h2 class="pillar-title">Logistics &amp; Reach</h2>
+        <p>Collection anywhere in the UK and Europe. Containers, bulk and road freight arranged; documents handled properly. London, Rotterdam, New York.</p>
+        <a class="quiet-link" href="/the-house">The house</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="section-inner">
+    <p class="section-no smallcaps">II. — On the Board</p>
+    <div class="board-strip">
+      <div class="board-strip-head">
+        <h2>Latest lots</h2>
+        <a class="quiet-link" href="/live-desk">The full board</a>
+      </div>
+      <% if (latestLots.length) { %>
+      <div class="lot-grid">
+        <% latestLots.forEach(function (lot) { %><%- include('partials/lot-card', { lot: lot }) %><% }) %>
+      </div>
+      <% } else { %>
+      <p class="empty-note">The desk currently has no open lots. Enquiries for specific material are welcome.</p>
+      <% } %>
+    </div>
+    <% if (latestWanted.length) { %>
+    <hr class="rule">
+    <div class="board-strip">
+      <div class="board-strip-head">
+        <h2>Material wanted</h2>
+      </div>
+      <div class="lot-grid">
+        <% latestWanted.forEach(function (lot) { %><%- include('partials/lot-card', { lot: lot }) %><% }) %>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner narrow">
+    <p class="section-no smallcaps">III. — The Wire</p>
+    <h2>Receive the lot sheet</h2>
+    <p>A short list of what is on the board, sent when there is something worth sending. Traders may prefer WhatsApp:
+      <a class="quiet-link" href="https://wa.me/<%= company.contact.whatsapp %>?text=<%= encodeURIComponent('Please add me to the AMR lot sheet') %>" target="_blank" rel="noopener">join the WhatsApp trade list</a>.
+    </p>
+    <form class="wire-form wire-form-wide" data-wire-form action="/api/subscribe" method="post">
+      <input type="email" name="email" required placeholder="Email address" aria-label="Email address">
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+    <p class="wire-confirm" data-wire-confirm hidden>Noted. You are on the list.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="section-inner narrow">
+    <p class="closing-line">Material moves. Word holds.</p>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

@@ -1,0 +1,81 @@
+<%- include('partials/head') %>
+
+<section class="page-head">
+  <div class="section-inner">
+    <p class="smallcaps section-no">The House</p>
+    <h1>A trading house, in the old sense.</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner narrow">
+    <p class="section-no smallcaps">I. — The Story</p>
+    <p class="lede">AMR Universal trades physical commodity: paper and board first, secondary metals alongside. We stand between mills, printers, converters, foundries and yards on three continents, and we move material between them in serious volume.</p>
+    <p>The work is not complicated to describe. Somewhere, stock is surplus; somewhere else, it is needed. The value lies in knowing both parties, telling the truth about the material, and delivering when we said we would. That is the whole business, and it does not change with the market.</p>
+    <p>We are equally a buyer and a seller. Redundant stock, over-makings, side-runs and clearances are purchased outright and collected anywhere in the UK and Europe, with discretion.</p>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="section-inner">
+    <p class="section-no smallcaps">II. — Principles</p>
+    <div class="pillars">
+      <div class="pillar">
+        <h2 class="pillar-title">Discretion</h2>
+        <p>Our counterparties' names, volumes and prices are their own. We publish nothing that identifies a supplier or a buyer, and we do not discuss one client's business with another.</p>
+      </div>
+      <div class="pillar">
+        <h2 class="pillar-title">Reliability</h2>
+        <p>A confirmed lot ships. A collection date holds. Documents arrive before the vessel does. We would rather decline business than promise what we cannot perform.</p>
+      </div>
+      <div class="pillar">
+        <h2 class="pillar-title">Fair dealing</h2>
+        <p>Material is described as it is. Claims, when they arise, are settled on evidence and settled quickly. We take a long view of every relationship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner narrow">
+    <p class="section-no smallcaps">III. — From the Founder</p>
+    <blockquote class="founders-note">
+      <p>“Trading houses used to be judged on one question: is their word good? Everything we do — the grades we handle, the geographies we serve, the way we settle a claim — is arranged so that the answer stays yes. We are not the loudest house in the market. We intend to be the one that is still here.”</p>
+      <footer>— <%= company.founder %>, Founder</footer>
+    </blockquote>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="section-inner">
+    <p class="section-no smallcaps">IV. — Geographies</p>
+    <div class="geo-row">
+      <div><h3 class="geo-city">London</h3><p>The desk. UK sourcing and sales; collections nationwide.</p></div>
+      <div><h3 class="geo-city">Rotterdam</h3><p>Continental Europe. Mill relationships, warehousing, short-sea and deep-sea loading.</p></div>
+      <div><h3 class="geo-city">New York</h3><p>North America. Export programmes and transatlantic placement.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <p class="section-no smallcaps">V. — Compliance &amp; Accreditations</p>
+    <p class="narrow-note">The house holds itself to the certifications and licences proper to its trade. Marks appear here as they are granted; nothing is claimed that is not held.</p>
+    <div class="accreditation-row">
+      <% company.accreditations.forEach(function (a) { %>
+      <div class="accreditation">
+        <h3><%= a.title %></h3>
+        <p><%= a.body %></p>
+        <% if (a.held && a.detail) { %>
+        <p class="accreditation-status held"><%= a.detail %></p>
+        <% } else { %>
+        <p class="accreditation-status">Accreditation in progress · details on request</p>
+        <% } %>
+      </div>
+      <% }) %>
+    </div>
+    <p class="narrow-note quiet"><a class="quiet-link" href="/downloads/amr-universal-profile.pdf">Company profile · PDF</a></p>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

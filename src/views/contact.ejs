@@ -1,0 +1,45 @@
+<%- include('partials/head') %>
+
+<section class="page-head">
+  <div class="section-inner">
+    <p class="smallcaps section-no">Contact</p>
+    <h1>Speak to the desk.</h1>
+    <p class="lede">Enquiries are answered promptly — usually within the hour during trading hours, always the same day.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-details">
+        <p class="smallcaps">The Desk</p>
+        <address>
+          <% company.contact.addressLines.forEach(function (line) { %><%= line %><br><% }) %>
+        </address>
+        <p><a class="quiet-link" href="mailto:<%= company.contact.email %>"><%= company.contact.email %></a><br>
+        <a class="quiet-link" href="tel:<%= company.contact.phone.replace(/[^+\d]/g, '') %>"><%= company.contact.phone %></a></p>
+        <p><a class="btn-plain" href="https://wa.me/<%= company.contact.whatsapp %>?text=<%= encodeURIComponent('Enquiry for the AMR desk: ') %>" target="_blank" rel="noopener">Message the desk on WhatsApp</a></p>
+        <hr class="rule">
+        <p class="smallcaps">Collateral</p>
+        <p><a class="quiet-link" href="/downloads/amr-universal-profile.pdf">Company profile · PDF</a></p>
+      </div>
+      <div class="contact-form-wrap">
+        <p class="smallcaps">Written Enquiry</p>
+        <form class="contact-form" data-enquiry-form action="/api/enquiry" method="post">
+          <label>Name<input type="text" name="name" required autocomplete="name"></label>
+          <label>Company<input type="text" name="company" autocomplete="organization"></label>
+          <label>Email or telephone<input type="text" name="contact" required></label>
+          <label>Material<input type="text" name="material" placeholder="e.g. Testliner reels, HMS 1&2"></label>
+          <label>Quantity<input type="text" name="quantity" placeholder="e.g. 200 MT, monthly"></label>
+          <label>Message<textarea name="message" rows="6" required></textarea></label>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="form-error" data-enquiry-error hidden></p>
+          <button type="submit" class="btn">Send to the desk</button>
+        </form>
+        <p class="wire-confirm" data-enquiry-confirm hidden>Received. The desk will be in touch shortly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

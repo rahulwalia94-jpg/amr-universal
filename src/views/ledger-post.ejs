@@ -1,0 +1,18 @@
+<%- include('partials/head') %>
+
+<section class="page-head">
+  <div class="section-inner narrow">
+    <p class="smallcaps section-no">The Ledger · <%= note.date %></p>
+    <h1><%= note.title %></h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner narrow ledger-body">
+    <%- note.html %>
+    <hr class="rule">
+    <p class="narrow-note quiet">The Ledger records the desk's reading of the market at the time of writing. It is commentary, not advice, and not an offer to trade. <a class="quiet-link" href="/ledger">All notes</a></p>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

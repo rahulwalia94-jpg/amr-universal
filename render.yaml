@@ -1,0 +1,43 @@
+# AMR Universal — Render blueprint.
+#
+# NOTE ON THE FREE PLAN: Render's free plan does not support persistent disks.
+# Deployed as-is (free), the site works fully — but SQLite lives on ephemeral
+# storage, so lots posted via WhatsApp are lost on each deploy or restart.
+# That is acceptable for launching the site today with seed content.
+#
+# BEFORE LIVE TRADING: change plan to "starter" and uncomment the disk block
+# below (and the DATA_DIR env var). See LAUNCH-CHECKLIST.md.
+
+services:
+  - type: web
+    name: amr-universal
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    # --- Uncomment on the Starter plan for durable storage ---
+    # disk:
+    #   name: amr-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: BASE_URL
+        sync: false # set to https://<your-service>.onrender.com after first deploy
+      - key: META_APP_SECRET
+        sync: false
+      - key: WHATSAPP_VERIFY_TOKEN
+        sync: false
+      - key: WHATSAPP_ACCESS_TOKEN
+        sync: false
+      - key: WHATSAPP_PHONE_NUMBER_ID
+        sync: false
+      - key: ADMIN_WHATSAPP_NUMBERS
+        sync: false
+      - key: ADMIN_TOKEN
+        generateValue: true
+      # --- Uncomment together with the disk block above ---
+      # - key: DATA_DIR
+      #   value: /var/data

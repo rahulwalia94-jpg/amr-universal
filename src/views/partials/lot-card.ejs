@@ -1,0 +1,14 @@
+<article class="lot-card" id="<%= lot.lot_no %>" data-lot="<%= lot.lot_no %>">
+  <% if (lot.placed) { %><span class="ribbon">Placed</span><% } %>
+  <p class="lot-meta smallcaps"><%= lot.category === 'metals' ? 'Metals' : 'Paper & Board' %> · <%= lot.lot_no %></p>
+  <h3 class="lot-title"><%= lot.title %></h3>
+  <dl class="lot-facts">
+    <% if (lot.origin) { %><div><dt>Origin</dt><dd><%= lot.origin %></dd></div><% } %>
+    <% if (lot.quantity) { %><div><dt>Quantity</dt><dd><%= lot.quantity %></dd></div><% } %>
+    <div><dt>Price</dt><dd>On application</dd></div>
+  </dl>
+  <div class="lot-actions">
+    <button class="btn-quiet" data-reveal="<%= lot.lot_no %>">Request full details</button>
+    <a class="lot-wa" href="https://wa.me/<%= company.contact.whatsapp %>?text=<%= encodeURIComponent('Regarding lot ' + lot.lot_no + ' — ' + lot.title) %>" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+  </div>
+</article>

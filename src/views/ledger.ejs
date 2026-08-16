@@ -1,0 +1,27 @@
+<%- include('partials/head') %>
+
+<section class="page-head">
+  <div class="section-inner">
+    <p class="smallcaps section-no">The Ledger</p>
+    <h1>Notes from the desk.</h1>
+    <p class="lede">Occasional remarks on paper and board indices, scrap sentiment and freight. Written briefly, without forecast or flourish.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner narrow">
+    <% if (!notes.length) { %>
+      <p class="empty-note">Nothing is posted at present.</p>
+    <% } %>
+    <% notes.forEach(function (note) { %>
+    <article class="ledger-entry">
+      <p class="smallcaps ledger-date"><%= note.date %></p>
+      <h2><a href="/ledger/<%= note.slug %>"><%= note.title %></a></h2>
+      <% if (note.summary) { %><p><%= note.summary %></p><% } %>
+      <a class="quiet-link" href="/ledger/<%= note.slug %>">Read the note</a>
+    </article>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('partials/foot') %>

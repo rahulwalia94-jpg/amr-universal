@@ -1,0 +1,37 @@
+</main>
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-grid">
+      <div>
+        <p class="smallcaps">AMR Universal</p>
+        <p class="colophon-note">International trading of paper, board and secondary metals.<br><%= company.geographies %></p>
+      </div>
+      <div>
+        <p class="smallcaps">The Wire</p>
+        <p class="colophon-note">Receive the lot sheet. No circulars, no noise — material only.</p>
+        <form class="wire-form" data-wire-form action="/api/subscribe" method="post">
+          <input type="email" name="email" required placeholder="Email address" aria-label="Email address">
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="wire-confirm" data-wire-confirm hidden>Noted. You are on the list.</p>
+      </div>
+      <div>
+        <p class="smallcaps">Navigate</p>
+        <ul class="colophon-links">
+          <li><a href="/live-desk">Live Desk</a></li>
+          <li><a href="/terms-of-trade">Terms of Trade</a></li>
+          <li><a href="/downloads/amr-universal-profile.pdf">Company profile · PDF</a></li>
+          <li><a href="/privacy">Privacy &amp; Cookies</a></li>
+          <li><a href="/terms-of-use">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="rule">
+    <p class="statutory"><%= company.name %> · Registered in <%= company.registeredIn %> · Company No. <%= company.companyNumber %> · Registered office: <%= company.registeredOffice %></p>
+    <p class="statutory">© <%= year %> <%= company.name %>. This site sets no tracking cookies and runs no analytics.</p>
+  </div>
+</footer>
+<script src="/js/site.js" defer></script>
+</body>
+</html>

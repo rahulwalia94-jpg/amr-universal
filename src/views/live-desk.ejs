@@ -1,0 +1,108 @@
+<%- include('partials/head') %>
+
+<section class="page-head">
+  <div class="section-inner">
+    <p class="smallcaps section-no">Live Desk</p>
+    <h1>The board, as it stands.</h1>
+    <p class="lede">Posted directly from the trading desk and updated live. Public cards carry the essentials; full specification, photographs and price detail are released on request, promptly.</p>
+    <p class="desk-updated smallcaps" data-desk-updated>Updated <%= new Date().toISOString().slice(0,10) %></p>
+  </div>
+</section>
+
+<section class="section desk-section">
+  <div class="section-inner">
+    <p class="section-no smallcaps">I. — Lots Available</p>
+    <div class="lot-grid" data-board="offers">
+      <% if (offers.length) { %>
+        <% offers.forEach(function (lot) { %><%- include('partials/lot-card', { lot: lot }) %><% }) %>
+      <% } else { %>
+        <p class="empty-note">The desk currently has no open lots. Enquiries for specific material are welcome.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<hr class="rule rule-wide">
+
+<section class="section desk-section">
+  <div class="section-inner">
+    <p class="section-no smallcaps">II. — Material Wanted</p>
+    <p class="narrow-note">What the house is buying at present. Holders of matching stock are invited to write or send a WhatsApp message; offers are answered the same day.</p>
+    <div class="lot-grid" data-board="wanted">
+      <% if (wanted.length) { %>
+        <% wanted.forEach(function (lot) { %><%- include('partials/lot-card', { lot: lot }) %><% }) %>
+      <% } else { %>
+        <p class="empty-note">Nothing is sought at present beyond the standing interest in redundant paper and board stock.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="section-inner narrow">
+    <p class="section-no smallcaps">III. — The Wire</p>
+    <p>Receive the lot sheet by email, or <a class="quiet-link" href="https://wa.me/<%= company.contact.whatsapp %>?text=<%= encodeURIComponent('Please add me to the AMR lot sheet') %>" target="_blank" rel="noopener">join the WhatsApp trade list</a>.</p>
+    <form class="wire-form wire-form-wide" data-wire-form action="/api/subscribe" method="post">
+      <input type="email" name="email" required placeholder="Email address" aria-label="Email address">
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn">Subscribe</button>
+    </form>
+    <p class="wire-confirm" data-wire-confirm hidden>Noted. You are on the list.</p>
+  </div>
+</section>
+
+<!-- Request-full-details dialog: captures the lead, then reveals the lot. -->
+<dialog class="reveal-dialog" data-reveal-dialog>
+  <form method="dialog" class="reveal-close-form"><button class="reveal-close" aria-label="Close">×</button></form>
+  <div data-reveal-step="form">
+    <p class="smallcaps" data-reveal-lotno></p>
+    <h2 class="reveal-title" data-reveal-title></h2>
+    <p class="narrow-note">Full specification, photographs and price detail are released to named enquirers. Kindly leave your details; the desk responds within minutes during trading hours.</p>
+    <form data-reveal-form>
+      <input type="hidden" name="lot_no">
+      <label>Name<input type="text" name="name" required autocomplete="name"></label>
+      <label>Company<input type="text" name="company" autocomplete="organization"></label>
+      <label>Email or WhatsApp<input type="text" name="contact" required></label>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="form-error" data-reveal-error hidden></p>
+      <button type="submit" class="btn">Reveal details</button>
+    </form>
+  </div>
+  <div data-reveal-step="detail" hidden>
+    <p class="smallcaps" data-detail-lotno></p>
+    <h2 class="reveal-title" data-detail-title></h2>
+    <dl class="lot-facts lot-facts-full" data-detail-facts></dl>
+    <img data-detail-photo alt="Lot photograph" hidden>
+    <p class="narrow-note" data-detail-cta></p>
+  </div>
+</dialog>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Lots available — AMR Universal LTD",
+  "itemListElement": [
+    <% offers.forEach(function (lot, i) { %>
+    {
+      "@type": "ListItem",
+      "position": <%= i + 1 %>,
+      "item": {
+        "@type": "Product",
+        "name": <%- JSON.stringify(lot.title) %>,
+        "sku": "<%= lot.lot_no %>",
+        "category": "<%= lot.category === 'metals' ? 'Scrap and secondary metals' : 'Paper and board' %>",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/<%= lot.placed ? 'SoldOut' : 'InStock' %>",
+          "priceCurrency": "USD",
+          "url": "<%= BASE_URL %>/live-desk#<%= lot.lot_no %>"
+        }
+      }
+    }<%= i < offers.length - 1 ? ',' : '' %>
+    <% }) %>
+  ]
+}
+</script>
+
+<%- include('partials/foot') %>
